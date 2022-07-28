@@ -46,6 +46,10 @@ dependencies:
   #utils
   intl: ^0.17.0
 
+  # forms
+  flutter_form_builder:
+    git:
+      url: https://github.com/voxlabsio/flutter_form_builder.git
 
 
   # The following adds the Cupertino Icons font to your application.
