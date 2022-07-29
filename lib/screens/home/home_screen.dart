@@ -26,6 +26,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     App.init(context);
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Pokemons'),
+        centerTitle: true,
+      ),
       body: SafeArea(
         child: BlocBuilder<PokemonCubit, PokemonState>(
           builder: ((context, state) {

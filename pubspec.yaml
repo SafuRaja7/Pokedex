@@ -45,6 +45,7 @@ dependencies:
 
   #utils
   intl: ^0.17.0
+  url_launcher: ^6.1.5
 
   # forms
   flutter_form_builder:
