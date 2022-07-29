@@ -1,3 +1,5 @@
+import 'package:dexplatassesment/configs/configs.dart';
+import 'package:dexplatassesment/cubits/auth/auth_cubit.dart';
 import 'package:dexplatassesment/cubits/pokemon/pokemon_cubit.dart';
 import 'package:dexplatassesment/screens/home/widgets/pokemon_card.dart';
 import 'package:flutter/material.dart';
@@ -29,30 +31,50 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('Pokemons'),
         centerTitle: true,
+        automaticallyImplyLeading: false,
+        actions: [
+          Padding(
+              padding: Space.all(0.5, 0),
+              child: InkWell(
+                  onTap: () async {
+                    final authCubit = BlocProvider.of<AuthCubit>(context);
+                    await authCubit.logOut();
+                  },
+                  child: const Icon(Icons.logout)))
+        ],
       ),
-      body: SafeArea(
-        child: BlocBuilder<PokemonCubit, PokemonState>(
-          builder: ((context, state) {
-            if (state is PokemonLoading) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (state is PokemonFailure) {
-              return const Center(
-                child: Text('Something went Wrong...!'),
-              );
-            } else if (state is PokemonSuccess) {
-              return ListView(
-                  children: state.data!
-                      .map((pokemon) => PokemonCard(
-                            pokemon: pokemon,
-                          ))
-                      .toList());
-            } else {
-              return const Text('Try Again');
-            }
-          }),
-        ),
+      body: BlocConsumer<AuthCubit, AuthState>(
+        builder: (context, state) {
+          return SafeArea(
+            child: BlocBuilder<PokemonCubit, PokemonState>(
+              builder: ((context, state) {
+                if (state is PokemonLoading) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (state is PokemonFailure) {
+                  return const Center(
+                    child: Text('Something went Wrong...!'),
+                  );
+                } else if (state is PokemonSuccess) {
+                  return ListView(
+                      children: state.data!
+                          .map((pokemon) => PokemonCard(
+                                pokemon: pokemon,
+                              ))
+                          .toList());
+                } else {
+                  return const Text('Try Again');
+                }
+              }),
+            ),
+          );
+        },
+        listener: (context, state) {
+          if (state is AuthLogOut) {
+            Navigator.pop(context);
+          }
+        },
       ),
     );
   }
