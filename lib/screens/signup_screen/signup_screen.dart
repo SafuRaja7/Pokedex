@@ -46,7 +46,9 @@ class _SignupScreenState extends State<SignupScreen> {
                 ..hideCurrentSnackBar()
                 ..showSnackBar(
                   const SnackBar(
-                    content: Text('Account Created'),
+                    content: Text(
+                      'Account Created',
+                    ),
                   ),
                 );
               Navigator.pop(context);
@@ -234,7 +236,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       },
                       child: Text(
                         'Login Now',
-                        style: AppText.h3!
+                        style: AppText.h3b!
                             .copyWith(color: Colors.blue, fontSize: 15),
                       ),
                     ),

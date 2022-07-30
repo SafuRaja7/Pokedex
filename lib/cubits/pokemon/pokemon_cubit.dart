@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dexplatassesment/model/pokemon.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
+import 'package:hive/hive.dart';
 
 part 'pokemon_state.dart';
 part 'repository.dart';
@@ -18,7 +19,9 @@ class PokemonCubit extends Cubit<PokemonState> {
     );
 
     try {
-      final data = await repo.fetchapi();
+      var data = await repo.fetchHive();
+
+      data ??= await repo.fetchapi();
 
       emit(
         PokemonSuccess(data),

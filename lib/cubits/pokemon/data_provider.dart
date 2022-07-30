@@ -2,6 +2,7 @@ part of 'pokemon_cubit.dart';
 
 class PokemonDataProvider {
   static final dio = Dio();
+  static final cache = Hive.box('pokemon');
 
   static Future<List<PokemonModel>> fetchapi() async {
     try {
@@ -12,6 +13,8 @@ class PokemonDataProvider {
 
       final List<PokemonModel> pokemon = List.generate(
           data.length, (index) => PokemonModel.fromMap(data[index]));
+
+      await cache.put('pokemon', pokemon);
 
       return pokemon;
     } on DioError catch (e) {
@@ -26,6 +29,23 @@ class PokemonDataProvider {
       }
     } catch (e) {
       throw Exception("Internal Server Error");
+    }
+  }
+
+  static Future<List<PokemonModel>?> fetchHive() async {
+    try {
+      List? cachedPokemons = cache.get('pokemon');
+
+      if (cachedPokemons == null) {
+        return null;
+      }
+      List<PokemonModel>? pokemon = List.generate(
+        cachedPokemons.length,
+        (index) => cachedPokemons[index],
+      );
+      return pokemon;
+    } catch (e) {
+      throw Exception(e.toString());
     }
   }
 }

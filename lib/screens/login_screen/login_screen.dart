@@ -1,5 +1,5 @@
 import 'package:dexplatassesment/configs/configs.dart';
-import 'package:dexplatassesment/screens/signup_screen/signupscreen.dart';
+import 'package:dexplatassesment/screens/signup_screen/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -190,7 +190,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       child: Text(
                         'Register Now',
-                        style: AppText.h3!
+                        style: AppText.h3b!
                             .copyWith(color: Colors.blue, fontSize: 15),
                       ),
                     )
