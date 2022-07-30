@@ -1,7 +1,7 @@
 part of 'favourites_cubit.dart';
 
 class FavouritesState extends Equatable {
-  final List<PokemonModel?>? data;
+  final List<PokemonModel>? data;
   final bool? isfav;
   final String? message;
 
@@ -26,7 +26,7 @@ class FavouriteFetchLoading extends FavouritesState {
 }
 
 class FavouriteFetchSuccess extends FavouritesState {
-  const FavouriteFetchSuccess({List<PokemonModel?>? data, bool? isfav})
+  const FavouriteFetchSuccess({List<PokemonModel>? data, bool? isfav})
       : super(
           data: data,
           isfav: isfav,

@@ -13,7 +13,7 @@ class FavouritesCubit extends Cubit<FavouritesState> {
     emit(const FavouriteFetchLoading());
 
     try {
-      List<PokemonModel?>? data = await FavouritesDataProvider.fetch();
+      List<PokemonModel>? data = await FavouritesDataProvider.fetch();
 
       emit(FavouriteFetchSuccess(data: data, isfav: false));
     } catch (e) {
@@ -24,7 +24,7 @@ class FavouritesCubit extends Cubit<FavouritesState> {
   Future<void> updateFav(PokemonModel pokemon, bool add) async {
     emit(const FavouriteFetchLoading());
     try {
-      List<PokemonModel?>? data = [];
+      List<PokemonModel>? data = [];
       if (add) {
         data = await FavouritesDataProvider.addfav(pokemon);
       } else {
@@ -38,7 +38,7 @@ class FavouritesCubit extends Cubit<FavouritesState> {
     }
   }
 
-  Future<void> checkBookmarked(PokemonModel pokemon) async {
+  Future<void> checkFav(PokemonModel pokemon) async {
     emit(const FavouriteFetchLoading());
     try {
       final isfav = await FavouritesDataProvider.checkfav(pokemon);
