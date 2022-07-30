@@ -25,7 +25,18 @@ class AuthLoginSuccess extends AuthState {
 }
 
 class AuthLoginError extends AuthState {
-  const AuthLoginError({String? error}) : super(error: error);
+  final String err;
+  const AuthLoginError(this.err);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is AuthLoginError && other.error == err;
+  }
+
+  @override
+  int get hashCode => err.hashCode;
 }
 
 // signup
@@ -38,18 +49,7 @@ class AuthSignUpSuccess extends AuthState {
 }
 
 class AuthSignUpError extends AuthState {
-  final String? errorr;
-  const AuthSignUpError(this.errorr);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is AuthSignUpError && other.errorr == errorr;
-  }
-
-  @override
-  int get hashCode => errorr.hashCode;
+  const AuthSignUpError() : super();
 }
 
 //logout

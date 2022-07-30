@@ -38,14 +38,19 @@ class _LoginScreenState extends State<LoginScreen> {
                   }),
                 ),
               );
-            } else if (state is AuthSignUpError) {
-              ScaffoldMessenger.of(context)
-                ..hideCurrentSnackBar()
-                ..showSnackBar(
-                  SnackBar(
-                    content: Text(state.error!),
-                  ),
-                );
+            } else if (state is AuthLoginError) {
+              AlertDialog(
+                title: const Text('Wrong email or Password'),
+                actions: [
+                  InkWell(
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const CustomButton(
+                        text: 'OK',
+                      ))
+                ],
+              );
             }
           },
         ),

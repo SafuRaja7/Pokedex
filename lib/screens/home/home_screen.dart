@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../configs/app.dart';
+import '../favourite_pokemons/favourites.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -37,10 +38,18 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: Space.all(0.5, 0),
               child: InkWell(
                   onTap: () async {
-                    final authCubit = BlocProvider.of<AuthCubit>(context);
-                    await authCubit.logOut();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: ((context) {
+                          return const FavouritesScreen();
+                        }),
+                      ),
+                    );
+                    // final authCubit = BlocProvider.of<AuthCubit>(context);
+                    // await authCubit.logOut();
                   },
-                  child: const Icon(Icons.logout)))
+                  child: const Icon(Icons.favorite)))
         ],
       ),
       body: BlocConsumer<AuthCubit, AuthState>(

@@ -22,7 +22,7 @@ class AuthCubit extends Cubit<AuthState> {
         emit(AuthLoginSuccess(user: user));
       }
     } on FirebaseAuthException catch (e) {
-      emit(AuthLoginError(error: e.message));
+      emit(AuthLoginError(e.message!));
     }
   }
 
@@ -39,8 +39,8 @@ class AuthCubit extends Cubit<AuthState> {
         user.updateDisplayName(name);
         emit(const AuthSignUpSuccess());
       }
-    } on FirebaseAuthException catch (e) {
-      emit(AuthSignUpError(e.message));
+    } on FirebaseAuthException {
+      emit(const AuthSignUpError());
     }
   }
 

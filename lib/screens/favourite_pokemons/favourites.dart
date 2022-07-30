@@ -1,58 +1,71 @@
 import 'package:dexplatassesment/cubits/favourites/favourites_cubit.dart';
-import 'package:dexplatassesment/screens/home/widgets/pokemon_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class Favourites extends StatefulWidget {
-  const Favourites({super.key});
+import '../../configs/app.dart';
+import '../home/widgets/pokemon_card.dart';
+
+class FavouritesScreen extends StatefulWidget {
+  const FavouritesScreen({super.key});
 
   @override
-  State<Favourites> createState() => _FavouritesState();
+  State<FavouritesScreen> createState() => _FavouritesScreenState();
 }
 
-class _FavouritesState extends State<Favourites> {
+class _FavouritesScreenState extends State<FavouritesScreen> {
   @override
   void initState() {
-    final favCubit = BlocProvider.of<FavouritesCubit>(context);
-    favCubit.fetch();
+    final pokemonCubit = BlocProvider.of<FavouritesCubit>(context);
+    if (pokemonCubit.state.data == null) {
+      pokemonCubit.fetch();
+    }
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    App.init(context);
     final favCubit = BlocProvider.of<FavouritesCubit>(context);
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Favourites'),
-      ),
-      body: SafeArea(
-        child: BlocBuilder(
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Favourites'),
+          centerTitle: true,
+        ),
+        body: BlocBuilder<FavouritesCubit, FavouritesState>(
           builder: ((context, state) {
             if (state is FavouriteFetchLoading) {
               return const Center(
                 child: CircularProgressIndicator(),
               );
+            } else if (state is FavouriteFetchFailure) {
+              return const Center(
+                child: Text('OOPS Something Went Wrong...!'),
+              );
             } else if (state is FavouriteFetchSuccess && state.data!.isEmpty) {
               return const Center(
-                child: Text('No Favourite items'),
+                child: Text('Nothing to show'),
               );
             } else if (state is FavouriteFetchSuccess) {
               return ListView.separated(
-                  separatorBuilder: (context, index) => const Divider(
-                        color: Colors.black,
-                      ),
-                  itemCount: favCubit.state.data!.length,
                   itemBuilder: (context, index) {
-                    final pokemon = favCubit.state.data![index];
+                    final favourites = favCubit.state.data![index];
                     return PokemonCard(
-                      pokemon: pokemon,
+                      pokemon: favourites,
                     );
-                  });
+                  },
+                  separatorBuilder: (context, index) {
+                    return const Divider(
+                      color: Colors.black,
+                    );
+                  },
+                  itemCount: favCubit.state.data!.length);
+            } else {
+              return const Center(
+                child: Text('Something Went Wrong...!'),
+              );
             }
-            return const Center(
-              child: Text('Something Went Wrong...!'),
-            );
           }),
         ),
       ),
