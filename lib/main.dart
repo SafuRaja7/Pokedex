@@ -21,6 +21,8 @@ void main() async {
   Hive.registerAdapter(PokemonModelAdapter());
 
   await Hive.openBox('pokemon');
+  await Hive.openBox('login');
+  
   runApp(const MyApp());
 }
 

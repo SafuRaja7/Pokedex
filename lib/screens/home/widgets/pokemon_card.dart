@@ -55,15 +55,15 @@ class _PokemonCardState extends State<PokemonCard> {
               children: [
                 BlocBuilder<FavouritesCubit, FavouritesState>(
                   builder: ((context, state) {
-                    return IconButton(
-                      onPressed: () {
+                    return InkWell(
+                      onTap: () {
                         if (favCubit.state.isfav!) {
                           favCubit.updateFav(widget.pokemon!, false);
                         } else {
                           favCubit.updateFav(widget.pokemon!, true);
                         }
                       },
-                      icon: favCubit.state.isfav!
+                      child: favCubit.state.isfav!
                           ? const Icon(
                               Icons.favorite,
                               color: Colors.red,
