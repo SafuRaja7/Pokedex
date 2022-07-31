@@ -1,6 +1,7 @@
 import 'package:dexplatassesment/configs/configs.dart';
 import 'package:dexplatassesment/cubits/pokemon/pokemon_cubit.dart';
 import 'package:dexplatassesment/screens/home/widgets/pokemon_card.dart';
+import 'package:dexplatassesment/widgets/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -28,6 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     App.init(context);
     return Scaffold(
+      bottomNavigationBar: const CustomNavBar(),
       appBar: AppBar(
         title: const Text('Pokemons'),
         centerTitle: true,

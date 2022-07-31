@@ -41,9 +41,9 @@ class MyApp extends StatelessWidget {
         title: 'Pokedex',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.deepPurple,
         ),
-        initialRoute: AppRoutes.login,
+        initialRoute: AppRoutes.home,
         routes: {
           AppRoutes.splash: (context) => const Splash(),
           AppRoutes.login: (context) => const LoginScreen(),

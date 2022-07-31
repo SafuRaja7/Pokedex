@@ -39,9 +39,9 @@ class FavouritesDataProvider {
 
   static Future<List<PokemonModel>?> removefav(PokemonModel? pokemon) async {
     try {
-      List favourites = await cache.get('pokemon');
+      List? favourites = await cache.get('pokemon');
 
-      final List<PokemonModel> updatedfavourites = List.from(favourites);
+      final List<PokemonModel> updatedfavourites = List.from(favourites!);
       updatedfavourites.remove(pokemon);
 
       await cache.put('pokemon', updatedfavourites);
@@ -53,9 +53,9 @@ class FavouritesDataProvider {
 
   static Future<bool?> checkfav(PokemonModel? pokemon) async {
     try {
-      List favourites = await cache.get('pokemon');
+      List? favourites = await cache.get('pokemon');
 
-      final List<PokemonModel?> updatedfavourites = List.from(favourites);
+      final List<PokemonModel?> updatedfavourites = List.from(favourites!);
       return updatedfavourites.contains(pokemon);
     } catch (e) {
       throw Exception("Internal Server Error");
