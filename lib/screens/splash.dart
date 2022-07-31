@@ -1,5 +1,6 @@
 import 'package:dexplatassesment/approutes.dart';
 import 'package:dexplatassesment/configs/configs.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../configs/app.dart';
 
@@ -13,7 +14,11 @@ class Splash extends StatefulWidget {
 class _SplashState extends State<Splash> {
   void _nextScreen() {
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushNamed(context, AppRoutes.login);
+      Navigator.pushNamed(
+          context,
+          FirebaseAuth.instance.currentUser != null
+              ? AppRoutes.home
+              : AppRoutes.login);
     });
   }
 

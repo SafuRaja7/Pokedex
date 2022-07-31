@@ -9,10 +9,12 @@ class PokemonDataProvider {
       final response = await dio.get('https://pokeapi.co/api/v2/pokemon/');
 
       final Map raw = response.data;
-      List data = raw['results'];
+      List? data = raw['results'];
 
       final List<PokemonModel> pokemon = List.generate(
-          data.length, (index) => PokemonModel.fromMap(data[index]));
+        data!.length,
+        (index) => PokemonModel.fromMap(data[index]),
+      );
 
       await cache.put('pokemon', pokemon);
 

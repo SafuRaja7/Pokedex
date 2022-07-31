@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        initialRoute: AppRoutes.splash,
+        initialRoute: AppRoutes.login,
         routes: {
           AppRoutes.splash: (context) => const Splash(),
           AppRoutes.login: (context) => const LoginScreen(),

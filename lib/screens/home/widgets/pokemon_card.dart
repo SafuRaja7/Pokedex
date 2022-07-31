@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:dexplatassesment/configs/configs.dart';
 import 'package:dexplatassesment/model/pokemon.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PokemonCard extends StatefulWidget {
   final PokemonModel? pokemon;
@@ -76,8 +77,13 @@ class _PokemonCardState extends State<PokemonCard> {
                 ),
               ],
             ),
-            Text(
-              widget.pokemon!.url,
+            InkWell(
+              onTap: () => launchUrl(
+                Uri.parse(widget.pokemon!.url),
+              ),
+              child: Text(
+                widget.pokemon!.url,
+              ),
             ),
           ],
         ),
