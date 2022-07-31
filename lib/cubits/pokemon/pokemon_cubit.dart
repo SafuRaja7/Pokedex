@@ -21,7 +21,9 @@ class PokemonCubit extends Cubit<PokemonState> {
     try {
       var data = await repo.fetchHive();
 
-      data ??= await repo.fetchapi();
+      if (data == null) {
+        await repo.fetchapi();
+      }
 
       emit(
         PokemonSuccess(data),
