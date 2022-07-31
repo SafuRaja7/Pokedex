@@ -30,7 +30,7 @@ class _SplashState extends State<Splash> {
       body: Center(
         child: Text(
           'P O K E D E X',
-          style: AppText.h1b!.copyWith(color: Colors.blue, fontSize: 50),
+          style: AppText.h1b!.copyWith(color: Colors.deepPurple, fontSize: 50),
         ),
       ),
     );

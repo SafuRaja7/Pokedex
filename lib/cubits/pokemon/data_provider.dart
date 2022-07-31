@@ -36,9 +36,8 @@ class PokemonDataProvider {
     try {
       List? cachedPokemons = cache.get('pokemon');
 
-      if (cachedPokemons == null) {
-        return null;
-      }
+      if (cachedPokemons == null) return null;
+
       List<PokemonModel>? pokemon = List.generate(
         cachedPokemons.length,
         (index) => cachedPokemons[index],
