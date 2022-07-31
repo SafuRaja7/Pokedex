@@ -1,16 +1,18 @@
-# dexplatassesment
+# POKEDEX
 
-A new Flutter project.
+A simple application created using BLOC (cubit).
+The main aim was to learn bloc, hive etc.
 
-## Getting Started
+## Screenshots
 
-This project is a starting point for a Flutter application.
+ <img src="screenshots/splash.png" alt="" width="230">  <img src="screenshots/login.png" alt="" width="230">  <img src="screenshots/signup.png" alt="" width="230">   
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img src="screenshots/home.png" alt="" width="230"> <img src="screenshots/fav.png" alt="" width="230">  
+
+
+
+## API Reference
+
+API : https://documenter.getpostman.com/view/10670805/SzS2xToN#be879560-9b35-4fe7-ba0a-fb4c43bfd26f
