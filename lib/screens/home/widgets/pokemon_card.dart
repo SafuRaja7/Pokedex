@@ -30,26 +30,28 @@ class _PokemonCardState extends State<PokemonCard> {
   @override
   Widget build(BuildContext context) {
     final favCubit = BlocProvider.of<FavouritesCubit>(context);
+    String caps(String s) => s[0].toUpperCase() + s.substring(1);
 
     return Card(
       borderOnForeground: false,
       child: Container(
         padding: Space.all(0.5, 0),
         width: double.infinity,
-        height: AppDimensions.normalize(40),
+        height: AppDimensions.normalize(35),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(5),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Space.y!,
             Text(
-              widget.pokemon!.name,
+              caps(widget.pokemon!.name),
               style: AppText.h2b,
             ),
-            Space.y1!,
+            Space.y!,
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -73,6 +75,9 @@ class _PokemonCardState extends State<PokemonCard> {
                   }),
                 ),
               ],
+            ),
+            Text(
+              widget.pokemon!.url,
             ),
           ],
         ),

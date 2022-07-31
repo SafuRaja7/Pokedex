@@ -1,3 +1,4 @@
+import 'package:dexplatassesment/configs/configs.dart';
 import 'package:dexplatassesment/cubits/favourites/favourites_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,8 +45,21 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                 child: Text('OOPS Something Went Wrong...!'),
               );
             } else if (state is FavouriteFetchSuccess && state.data!.isEmpty) {
-              return const Center(
-                child: Text('Nothing to show'),
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.no_adult_content_sharp,
+                      size: AppDimensions.normalize(30),
+                    ),
+                    Space.y2!,
+                    Text(
+                      'Nothing to show',
+                      style: AppText.h3b,
+                    ),
+                  ],
+                ),
               );
             } else if (state is FavouriteFetchSuccess) {
               return ListView.separated(

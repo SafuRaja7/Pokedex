@@ -22,7 +22,7 @@ void main() async {
 
   await Hive.openBox('pokemon');
   await Hive.openBox('login');
-  
+
   runApp(const MyApp());
 }
 
@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        initialRoute: AppRoutes.home,
+        initialRoute: AppRoutes.login,
         routes: {
           AppRoutes.splash: (context) => const Splash(),
           AppRoutes.login: (context) => const LoginScreen(),

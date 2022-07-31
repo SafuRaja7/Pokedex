@@ -60,6 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _buildInitialForm() {
     return Scaffold(
+      backgroundColor: Colors.grey[300],
       resizeToAvoidBottomInset: true,
       body: SafeArea(
         child: FormBuilder(
@@ -69,30 +70,43 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  height: AppDimensions.normalize(130),
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage(
-                          'https://img.freepik.com/free-vector/tiny-people-turning-bulb-into-socket-idea-lamp-electricity-flat-vector-illustration-brainstorming-creativity_74855-8630.jpg?size=626&ext=jpg&ga=GA1.2.1299849178.1658999473'),
-                      fit: BoxFit.fill,
-                    ),
+                Space.yf(5),
+                Padding(
+                  padding: Space.all(7.5, 0),
+                  child: Icon(
+                    Icons.android,
+                    size: AppDimensions.normalize(50),
                   ),
                 ),
                 Space.y1!,
-                Padding(
-                  padding: Space.all(1, 0),
+
+                Container(
+                  padding: Space.all(2, 0),
+                  margin: Space.all(4, 0),
                   child: Text(
-                    'Log In',
-                    style: AppText.h1b!.copyWith(fontSize: 30),
+                    'HELLO AGAIN!',
+                    style: AppText.h1b,
                   ),
                 ),
+                Space.y1!,
+
+                Container(
+                  margin: Space.all(1, 0),
+                  child: Text(
+                    "Welcome Back, you've been missed!",
+                    style: AppText.h2,
+                  ),
+                ),
+
+                Space.y1!,
+
                 // email field
                 Space.y1!,
 
                 Padding(
                   padding: Space.all(1, 0),
-                  child: SizedBox(
+                  child: Container(
+                    color: Colors.grey[200],
                     width: AppDimensions.normalize(140),
                     child: FormBuilderTextField(
                       name: 'email',
@@ -102,8 +116,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           prefixIcon: const Icon(Icons.email),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15),
-                            borderSide:
-                                const BorderSide(width: 1, color: Colors.black),
+                            borderSide: const BorderSide(
+                              width: 1,
+                              style: BorderStyle.none,
+                            ),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderSide:
@@ -124,7 +140,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 Padding(
                   padding: Space.all(1, 0),
-                  child: SizedBox(
+                  child: Container(
+                    color: Colors.grey[200],
                     width: AppDimensions.normalize(140),
                     child: FormBuilderTextField(
                       name: 'password',
@@ -143,8 +160,10 @@ class _LoginScreenState extends State<LoginScreen> {
                               Icon(_isSecure ? Icons.lock : Icons.lock_open),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15),
-                            borderSide:
-                                const BorderSide(width: 1, color: Colors.black),
+                            borderSide: const BorderSide(
+                                width: 1,
+                                color: Colors.black,
+                                style: BorderStyle.none),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderSide:
@@ -196,7 +215,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Text(
                         'Register Now',
                         style: AppText.h3b!
-                            .copyWith(color: Colors.blue, fontSize: 15),
+                            .copyWith(color: Colors.deepPurple, fontSize: 15),
                       ),
                     )
                   ],

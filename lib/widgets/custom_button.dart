@@ -17,7 +17,7 @@ class CustomButton extends StatelessWidget {
       height: AppDimensions.normalize(20),
       width: AppDimensions.normalize(130),
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 7, 121, 215),
+        color: Colors.deepPurple,
         borderRadius: BorderRadius.circular(5),
       ),
       child: Center(

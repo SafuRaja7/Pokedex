@@ -19,7 +19,7 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
   final _formKey = GlobalKey<FormBuilderState>();
-  bool _isSecure = true;
+  final bool _isSecure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -65,6 +65,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
   Widget _buildInitialForm() {
     return Scaffold(
+      backgroundColor: Colors.grey[300],
       resizeToAvoidBottomInset: true,
       body: SafeArea(
         child: FormBuilder(
@@ -74,48 +75,61 @@ class _SignupScreenState extends State<SignupScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Space.yf(5),
+                Padding(
+                  padding: Space.all(7.5, 0),
+                  child: Icon(
+                    Icons.android,
+                    size: AppDimensions.normalize(50),
+                  ),
+                ),
+                Space.y1!,
+
                 Container(
-                  height: AppDimensions.normalize(130),
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage(
-                          'https://img.freepik.com/free-vector/tiny-people-turning-bulb-into-socket-idea-lamp-electricity-flat-vector-illustration-brainstorming-creativity_74855-8630.jpg?size=626&ext=jpg&ga=GA1.2.1299849178.1658999473'),
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                ),
-                Space.y1!,
-
-                Padding(
-                  padding: Space.all(1, 0),
+                  padding: Space.all(4, 0),
+                  margin: Space.all(4.5, 0),
                   child: Text(
-                    'Log In',
-                    style: AppText.h1b!.copyWith(fontSize: 30),
+                    'HELLO! ',
+                    style: AppText.h1b,
                   ),
                 ),
+                Space.y1!,
+
+                Container(
+                  margin: Space.all(5, 0),
+                  child: Text(
+                    "Welcome To Pokedex!",
+                    style: AppText.h2,
+                  ),
+                ),
+                Space.y1!,
 
                 Space.y1!,
 
                 Padding(
                   padding: Space.all(1, 0),
-                  child: SizedBox(
+                  child: Container(
+                    color: Colors.grey[200],
                     width: AppDimensions.normalize(140),
                     child: FormBuilderTextField(
                       name: 'name',
                       decoration: InputDecoration(
-                          contentPadding: Space.all(5, 0),
-                          hintText: 'Your Name',
-                          prefixIcon: const Icon(Icons.person),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide:
-                                const BorderSide(width: 1, color: Colors.black),
+                        contentPadding: Space.all(5, 0),
+                        hintText: 'Your Name',
+                        prefixIcon: const Icon(Icons.person),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: const BorderSide(
+                            width: 1,
+                            style: BorderStyle.none,
                           ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide:
-                                const BorderSide(width: 1, color: Colors.blue),
-                            borderRadius: BorderRadius.circular(15),
-                          )),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(width: 1, color: Colors.blue),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
                       textInputAction: TextInputAction.next,
                       validator: FormBuilderValidators.compose([
                         FormBuilderValidators.match(context, r'[a-zA-Z]',
@@ -130,24 +144,28 @@ class _SignupScreenState extends State<SignupScreen> {
 
                 Padding(
                   padding: Space.all(1, 0),
-                  child: SizedBox(
+                  child: Container(
+                    color: Colors.grey[200],
                     width: AppDimensions.normalize(140),
                     child: FormBuilderTextField(
                       name: 'email',
                       decoration: InputDecoration(
-                          contentPadding: Space.all(5, 0),
-                          hintText: 'Email Address',
-                          prefixIcon: const Icon(Icons.email),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide:
-                                const BorderSide(width: 1, color: Colors.black),
+                        contentPadding: Space.all(5, 0),
+                        hintText: 'Email Address',
+                        prefixIcon: const Icon(Icons.email),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: const BorderSide(
+                            width: 1,
+                            style: BorderStyle.none,
                           ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide:
-                                const BorderSide(width: 1, color: Colors.blue),
-                            borderRadius: BorderRadius.circular(15),
-                          )),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(width: 1, color: Colors.blue),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
                       textInputAction: TextInputAction.next,
                       validator: FormBuilderValidators.compose([
                         FormBuilderValidators.email(context),
@@ -162,27 +180,21 @@ class _SignupScreenState extends State<SignupScreen> {
 
                 Padding(
                   padding: Space.all(1, 0),
-                  child: SizedBox(
+                  child: Container(
+                    color: Colors.grey[200],
                     width: AppDimensions.normalize(140),
                     child: FormBuilderTextField(
                       name: 'password',
                       decoration: InputDecoration(
-                          suffixIcon: InkWell(
-                            onTap: () => setState(() {
-                              _isSecure = !_isSecure;
-                            }),
-                            child: Icon(_isSecure
-                                ? Icons.remove_red_eye
-                                : Icons.panorama_fish_eye_sharp),
-                          ),
                           contentPadding: Space.all(5, 0),
                           hintText: 'Password',
-                          prefixIcon:
-                              Icon(_isSecure ? Icons.lock : Icons.lock_open),
+                          prefixIcon: const Icon(Icons.lock),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15),
-                            borderSide:
-                                const BorderSide(width: 1, color: Colors.black),
+                            borderSide: const BorderSide(
+                              width: 1,
+                              style: BorderStyle.none,
+                            ),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderSide:
@@ -237,7 +249,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       child: Text(
                         'Login Now',
                         style: AppText.h3b!
-                            .copyWith(color: Colors.blue, fontSize: 15),
+                            .copyWith(color: Colors.deepPurple, fontSize: 15),
                       ),
                     ),
                   ],
